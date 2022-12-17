@@ -17,7 +17,6 @@ function App() {
   ];
   const [personWork, setPersonWork] = useState([]);
   const [realMen, setRealMen] = useState([]);
-  console.log("realMen", realMen);
   return (
     <Container>
       <PersonWorkList>
@@ -114,7 +113,6 @@ const ListItem = styled.div`
   color: #222222;
 `;
 const Container = styled.div`
-  border: 1px solid red;
   display: flex;
   justify-content: center;
   align-items: center;

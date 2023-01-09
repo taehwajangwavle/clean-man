@@ -17,13 +17,29 @@ function App() {
   ];
   const [personWork, setPersonWork] = useState([]);
   const [realMen, setRealMen] = useState([]);
+
   return (
     <Container>
+      <AllCheck>
+        <input
+          type="checkbox"
+          checked={personWork.length === men.length}
+          onChange={(e) => {
+            if (e.currentTarget.checked) {
+              setPersonWork(men.map((item) => item.name));
+            } else {
+              setPersonWork([]);
+            }
+          }}
+        />
+        <ListItem>전체 선택</ListItem>
+      </AllCheck>
       <PersonWorkList>
-        {men.map((i) => {
+        {men.map((i, index) => {
           return (
-            <Item>
+            <Item key={index}>
               <input
+                checked={personWork.includes(i.name)}
                 type="checkbox"
                 onChange={(e) => {
                   if (e.currentTarget.checked) {
@@ -40,33 +56,37 @@ function App() {
         })}
       </PersonWorkList>
       <PersonWorkListItem>
-        {personWork.map((i) => {
-          return <PersonWorkItem>{i}님</PersonWorkItem>;
+        {personWork.map((i, index) => {
+          return <PersonWorkItem key={index}>{i}님</PersonWorkItem>;
         })}
       </PersonWorkListItem>
       <Btn
         onClick={() => {
           let one = Math.floor(Math.random() * personWork.length);
           let two = Math.floor(Math.random() * personWork.length);
-          if (one === two) {
-            alert("혼자하기 당첨");
 
-            return setRealMen([personWork[one]]);
-          }
-
-          setRealMen([personWork[one], personWork[two]]);
+          if (one !== two) setRealMen([personWork[one], personWork[two]]);
         }}
       >
         주번 고르기!~
       </Btn>
       <div>
-        {realMen.map((i) => (
-          <Result>{i}님</Result>
+        {realMen.map((i, index) => (
+          <Result key={index}>{i}님</Result>
         ))}
       </div>
     </Container>
   );
 }
+const AllCheck = styled.label`
+  display: flex;
+  gap: 5px;
+  margin-bottom: 15px;
+  box-sizing: border-box;
+  padding: 15px;
+  background-color: pink;
+  border-radius: 15px;
+`;
 const Result = styled.div`
   font-size: 100px;
 `;
@@ -111,6 +131,7 @@ const ListItem = styled.div`
   font-size: 15px;
   line-height: 15px;
   color: #222222;
+  white-space: nowrap;
 `;
 const Container = styled.div`
   display: flex;

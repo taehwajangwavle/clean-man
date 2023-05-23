@@ -76,7 +76,7 @@ function App() {
         주번 고르기!~
       </Btn>
       <div>
-        {dayOfWeek === "화" && (
+        {dayOfWeek === "월" && (
           <CleanDayText>오늘은 제빙기 청소하는 날입니다.</CleanDayText>
         )}
         {realMen.map((i, index) => (

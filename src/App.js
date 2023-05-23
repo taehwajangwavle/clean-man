@@ -18,6 +18,11 @@ function App() {
   const [personWork, setPersonWork] = useState([]);
   const [realMen, setRealMen] = useState([]);
 
+  const daysOfWeek = ["일", "월", "화", "수", "목", "금", "토"];
+  const currentDate = new Date();
+  const dayIndex = currentDate.getDay();
+  const dayOfWeek = daysOfWeek[dayIndex];
+
   return (
     <Container>
       <AllCheck>
@@ -71,6 +76,9 @@ function App() {
         주번 고르기!~
       </Btn>
       <div>
+        {dayOfWeek === "화" && (
+          <CleanDayText>오늘은 제빙기 청소하는 날입니다.</CleanDayText>
+        )}
         {realMen.map((i, index) => (
           <Result key={index}>{i}님</Result>
         ))}
@@ -78,6 +86,13 @@ function App() {
     </Container>
   );
 }
+
+const CleanDayText = styled.div`
+  display: flex;
+  justify-content: center;
+  color: blue;
+  font-size: 50px;
+`;
 const AllCheck = styled.label`
   display: flex;
   gap: 5px;
@@ -89,6 +104,8 @@ const AllCheck = styled.label`
 `;
 const Result = styled.div`
   font-size: 100px;
+  display: flex;
+  justify-content: center;
 `;
 const PersonWorkListItem = styled.div`
   display: flex;

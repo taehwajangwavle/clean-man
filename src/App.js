@@ -17,7 +17,7 @@ function App() {
   ];
   const [personWork, setPersonWork] = useState([]);
   const [realMen, setRealMen] = useState([]);
-
+  console.log(realMen)
   const daysOfWeek = ["일", "월", "화", "수", "목", "금", "토"];
   const currentDate = new Date();
   const dayIndex = currentDate.getDay();
